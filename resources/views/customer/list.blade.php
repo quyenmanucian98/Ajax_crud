@@ -45,7 +45,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <form class="form-inline my-2 my-lg-0">
-                        <input style="width: 400px" class="form-control mr-sm-2" type="search" placeholder="Search"
+                        <input style="width: 400px" class="form-control mr-sm-2" id="search-customer" type="search"
+                               placeholder="Search"
                                aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
@@ -65,13 +66,57 @@
             </thead>
             <tbody id="list-customer">
             @foreach($customers as $key =>$customer)
-                <tr>
-                    <th class="text-center indexOld" data-index={{(empty($key))?1:($key+1)}}>{{(empty($key))?1:($key+1)}}</th>
-                    <th class="text-center" scope="col">{{$customer->name}}</th>
-                    <th class="text-center" scope="col">{{$customer->age}}</th>
+                <tr class="customer-{{$customer->id}}" data-id="{{$customer->id}}">
+                    <th class="text-center indexOld"
+                        data-index={{(empty($key))?1:($key+1)}}>{{(empty($key))?1:($key+1)}}</th>
+                    <th class="text-center nameOld" scope="col">{{$customer->name}}</th>
+                    <th class="text-center ageOld" scope="col">{{$customer->age}}</th>
                     <th class="text-center" scope="col" style="width: 220px">
-                        <a class="btn btn-danger" href="">DELETE</a>
-                        <a class="btn btn-success" href="">EDIT</a>
+
+
+                        <button class="btn btn-danger delete" data-id="{{$customer->id}}">DELETE</button>
+
+
+                        <button type="button" class="btn btn-success edit" data-toggle="modal"
+                                data-id="{{$customer->id}}" data-target="#exampleModalScrollable">
+                            EDIT
+                        </button>
+                        <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalScrollableTitle">EDIT CUSTOMERS</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div>
+                                            <label for="exampleInputEmail1">ID</label>
+                                            <input type="text" class="form-control" id="id-update"
+                                                   placeholder="Enter Name" disabled>
+                                        </div>
+                                        <div>
+                                            <label for="exampleInputEmail1">NAME</label>
+                                            <input type="text" class="form-control" id="name-new"
+                                                   placeholder="Enter Name">
+                                        </div>
+                                        <div>
+                                            <label for="exampleInputEmail1">AGE</label>
+                                            <input type="number" class="form-control" id="age-new"
+                                                   placeholder="Enter Age">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary update" id="id-update">SAVE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </th>
                 </tr>
             @endforeach
