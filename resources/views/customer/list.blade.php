@@ -29,8 +29,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button class="btn btn-primary add">ADD</button>
+                            <button class="btn btn-primary add" data-dismiss="modal">ADD</button>
                         </div>
                     </div>
                 </div>
@@ -69,8 +68,8 @@
                 <tr class="customer-{{$customer->id}}" data-id="{{$customer->id}}">
                     <th class="text-center indexOld"
                         data-index={{(empty($key))?1:($key+1)}}>{{(empty($key))?1:($key+1)}}</th>
-                    <th class="text-center nameOld" scope="col">{{$customer->name}}</th>
-                    <th class="text-center ageOld" scope="col">{{$customer->age}}</th>
+                    <th class="text-center newName-{{$customer->id}}" scope="col">{{$customer->name}}</th>
+                    <th class="text-center newAge-{{$customer->id}}" scope="col">{{$customer->age}}</th>
                     <th class="text-center" scope="col" style="width: 220px">
 
 
@@ -92,10 +91,10 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <div>
+                                        <div style="display: none">
                                             <label for="exampleInputEmail1">ID</label>
                                             <input type="text" class="form-control" id="id-update"
-                                                   placeholder="Enter Name" disabled>
+                                                   placeholder="Enter Name">
                                         </div>
                                         <div>
                                             <label for="exampleInputEmail1">NAME</label>
@@ -109,9 +108,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
-                                        <button type="button" class="btn btn-primary update" id="id-update">SAVE</button>
+                                        <button type="button" class="btn btn-primary update" id="id-update" data-dismiss="modal">SAVE</button>
                                     </div>
                                 </div>
                             </div>
@@ -123,8 +120,6 @@
             </tbody>
         </table>
     </div>
-
-
 
 
 @endsection

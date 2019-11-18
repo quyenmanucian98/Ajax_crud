@@ -76,10 +76,9 @@ $(document).ready(function () {
         $('#name-new').val(nameOld);
         $('#age-new').val(ageOld);
         $('#id-update').val(id);
-        // console.log(id)
     });
 
-    $('.update').click(function () {
+    $('body').on('click','.update',function () {
         let newName = $('#name-new').val();
         let newAge = $('#age-new').val();
         let idNew = $('#id-update').val();
